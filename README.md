@@ -1,9 +1,9 @@
 1、滑动窗口  
 技巧：（1）确定窗口扩大和新增的逻辑  (2) 停止窗口移动的条件（2）解是否全  
 代码：对右窗单步循环，每一步在左窗循环优化，直到满足条件  
-    &emsp&emsp for left in range():  
-    &emsp&emsp&emsp  While f()  in limit :  
-    &emsp&emsp&emsp&emsp  Left += 1  
+    &emsp;&emsp; for left in range():  
+    &emsp;&emsp;&emsp;  While f()  in limit :  
+    &emsp;&emsp;&emsp;&emsp;  Left += 1  
 
      属性：查找连续的子串/子数组、子串内元素只考虑个数不考虑整体排序 
               求解最大最小长度，是否存在，返回l连续子串/子数组
