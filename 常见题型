@@ -1,0 +1,157 @@
+https://www.zhihu.com/question/36738189
+
+1、del 用于dict  remove用于list和set
+2、matr = [[0] * n]*m 这个东西的修改跟想象的不一样
+matr[0][0] =1 会让第一列全都变成1
+用[[0 for i in range(n)] for i in range(m)]
+3、q =[(-nums[i],i) for i in range(k)]#默认以第一个元素排序
+   q =[3,1,6,4,2,5]
+   heapq.heapify(q) #排序，默认为小跟堆
+   heapq.heappush(q,(-nums[i],i)) #加入一个元素更新堆
+   heapq.heappop(q) #弹出堆顶元素，即最小元素
+   可直接用：heapq.nlargest(k,q)[-1] 
+4、collections.Counter(s1) 计数
+   collections.Counter()初始化 
+
+
+ [x]1、滑动窗口
+       技巧：（1）确定窗口扩大和新增的逻辑  (2) 停止窗口移动的条件（2）解是否全
+       代码：对右窗单步循环，每一步在左窗循环优化，直到满足条件
+         for left in range():
+                  While f()  in limit :
+                       Left += 1
+
+     属性：查找连续的子串/子数组、子串内元素只考虑个数不考虑整体排序 
+              求解最大最小长度，是否存在，返回l连续子串/子数组
+    904. 水果成篮   ： 窗口最多存在两个类型
+
+    剑指 Offer 57 - II. 和为s的连续正数序列
+
+    3. 无重复字符的最长子串 (medium)
+
+    30. 串联所有单词的子串 （hard）
+
+    76. 最小覆盖子串 （hard） 没做出来
+
+    209. 长度最小的子数组 (medium)
+
+    239. 滑动窗口最大值 (hard)   堆+滑窗
+
+    567. 字符串的排列 （medium）
+
+[x]2、Top K系列  
+   堆排序heapq: 
+   215. 数组中的第K个最大元素 heapq.nlargest(k,nums)[-1]
+   347. 前 K 个高频元素  heapq.nlargest(k,heap)
+   373. 查找和最小的K对数字 heapq.nsmallest(k,l,key=lambda x:x[0]+x[1]) 
+                        heapq.heappush(queue, (nums1[0]+nums2[0],0,0))
+   295. 数据流的中位数(hard)
+
+ [x]3、改造的二分
+https://leetcode-cn.com/problems/search-insert-position/solution/te-bie-hao-yong-de-er-fen-cha-fa-fa-mo-ban-python-/
+ 问题：输入常为排好序的数组/链表，要找到某些特定的元素
+ 解法：（1）找到中间点， mid = start + (end - start)//2
+            （2）当key <arr[mid], 向左搜索，否则向右搜索
+
+           34. 在排序数组中查找元素的第一个和最后一个位置
+
+
+[x]4、双指针( 同向 + 异向) 
+     （1）数组或链表是排序好的，需要找到满足某种限制条件的组合，可能是一对数、三个数、一个子数组，适合排序：快排
+     （2）当我们需要枚举数组中的两个元素时，如果我们发现随着第一个元素的递增，第二个元素是递减的（如：两数之和），那么就可以使用双指针的方法，将枚举的时间复杂度从 O(N^2)O(N) 减少至 O(N)O(N)
+
+     快慢指针：
+      （1）适合处理环形链表和环形数组，需要知道链表长度或某个特定位置的信息
+      （2）在单链表上不能往回移动，如：判断是否回文
+          15. 三数之和
+
+         16. 最接近的三数之和
+
+         18. 四数之和
+
+         283. 移动零
+
+ []5、区间合并
+需要产生一堆相互无交集的区间的时候、或听到重叠区间的时候
+六种区间:（1）完全不重叠[1,2] [3,4]   （2）b 在a后面[1,2] [2,3]
+                  (3）b在a中间[1,2,3,4][2,3] （4）b在前面，[2,3] [1,2]
+                  (5)  a在b中间 [2,3],[1,2,3,4]（6）不重叠 [3,4] [1,2]
+     56. 合并区间
+
+
+6、循环排序 []
+     通常为排序好的数组，数值满足一定的区间
+     如排好序/翻转过的数组中，寻找丢失/重复的/最小的元素
+       287. 寻找重复数
+
+       442. 数组中重复的数据
+
+7、 链表翻转 []
+       206. 反转链表
+
+      92. 反转链表 II
+
+8、树上的BFS/DFS []
+   （1）定义dfs辅助函数和访问记录visited = set( )
+   （2）每一次查询需判断，下一步不越界&下一步符合条件&下一步还未访问过
+            当前步添加到visited中
+   （3）判断下一步的dfs，是否返回true，不能则移除当前步
+     200. 岛屿数量
+
+
+ []9、双堆类型 
+     一组数中的最大、最小、中位数
+     优先队列、计划安排问题中有奇效
+ []10、子集类型（常用多重DFS）
+
+
+
+ [x]11、多路归并 
+  问题：合并多个排序好的集合，或者找这些集合中最小的元素
+  解法：（1）把每组中第一个元素加入最小堆 
+             （2）取出堆顶元素（全局最小）放入排好序的结果集里 
+             （3）将刚取出的元素所在组的下一个元素加入堆 （4）重复（2）（3）
+       23. 合并K个升序链表(hard)
+
+       378. 有序矩阵中第 K 小的元素  
+
+def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
+    n = len(matrix)
+    pq = [(matrix[i][0],i,0) for i in range(n)]
+    heapq.heapify(pq)
+    res_num = 0
+    while res_num < k-1 :
+        val, i ,j = heapq.heappop(pq)
+        res_num += 1
+        if j < n-1:
+            heapq.heappush(pq,(matrix[i][j+1], i, j+1))
+    return heapq.heappop(pq)[0]
+      每次pop 记录，pop的是哪一路，下一次push改路的下一个元素
+ []12、拓扑排序 
+          207. 课程表
+
+
+  
+ [x]14、回溯
+     多少种组合, 深度遍历
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        def backtrack(begin, path):    
+            res.append(path)
+            for i in range(begin, len(nums)):
+                new_path = path + [nums[i]]
+                backtrack(i + 1, new_path)
+    path = []
+    res = []
+    begin = 0
+    backtrack(0, [])
+    return res
+
+15、单调栈
+   739. 每日温度
+
+16、贪心算法
+        采用贪心的策略，每次操作保证局部最优，全局最优等于局部最优的简单求和，且局部最优互不干扰
+   135. 分发糖果
+
+   55. 跳跃游戏
